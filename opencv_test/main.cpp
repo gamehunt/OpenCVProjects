@@ -11,10 +11,17 @@ int main(int argc, char* argv[])
         IplImage* frame=0;
 
         cvNamedWindow("capture", CV_WINDOW_AUTOSIZE);
-        int mode = 0;
-        std::cin>>mode;
+        int mode = -1;
+        std::cout<<"Available mods: 0 - Conturs , 1 - Edges , 2 - Binary , 3 - Binary Conturs  , 4 - Negativ "<<std::endl;
+        while(mode<0){
+            std::cout<<"Enter mode: "<<std::endl;
+            std::cin>>mode;
+            if(mode>4){
+                std::cout<<"Invalid mode"<<std::endl;
+            }
+        }
         while(true){
-
+                //std::cout<<mode<<std::endl;
                 frame = cvQueryFrame( capture );
                 if(mode == 0){
                 IplImage* gray = cvCreateImage(cvGetSize(frame),IPL_DEPTH_8U,1);
@@ -63,6 +70,17 @@ int main(int argc, char* argv[])
                 if (c == 27) { // нажата ESC
                         break;
                 }
+                if(c == 'c'){
+                    mode = -1;
+                    std::cout<<"Available mods: 0 - Conturs , 1 - Edges , 2 - Binary , 3 -  , 4 - Negativ "<<std::endl;
+                    while(mode<0){
+                        std::cout<<"Enter mode: "<<std::endl;
+                        std::cin>>mode;
+                        if(mode>4){
+                            std::cout<<"Invalid mode"<<std::endl;
+                        }
+                }
+        }
         }
         // освобождаем ресурсы
         cvReleaseCapture( &capture );
