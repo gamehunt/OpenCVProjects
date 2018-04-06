@@ -3,4 +3,4 @@ Projects that use opencv
 
 
 opencv_test:
-  test project that provides four filters for webcam capture
+  test project that provides five filters for webcam capture
